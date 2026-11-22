@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember Court — a duel of cards</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="stage">
+  <!-- Title screen -->
+  <section id="title-screen" class="screen on">
+    <div class="crown">👑</div>
+    <h1>EMBER COURT</h1>
+    <h2>A duel of cards against the Ashen Regent</h2>
+    <p class="tagline">You are the Challenger. The Regent has 45 life and a full court of
+      embers — you have 30 life, a 24-card deck, and your wits. Play cards,
+      read the Regent's announced intent, and take the throne.</p>
+    <div class="suits-row">
+      <div class="suit-chip"><span class="glyph" style="color:#d9480f">▲</span><b>Ember</b>Damage</div>
+      <div class="suit-chip"><span class="glyph" style="color:#1971c2">●</span><b>Tide</b>Heal &amp; shield</div>
+      <div class="suit-chip"><span class="glyph" style="color:#2b8a3e">◆</span><b>Thorn</b>Lingering hurt</div>
+      <div class="suit-chip"><span class="glyph" style="color:#7048e8">★</span><b>Gale</b>Draw &amp; embers</div>
+    </div>
+    <div class="court-box">⚜ <b>COURT RULE:</b> the second card of one suit in a turn gets <b>+2</b> — chain a suit to hit harder.</div>
+    <button id="play-btn" class="big-btn">▶ PLAY</button>
+    <p class="howto"><b>How to play:</b> click a card to play it (or keys 1–7). Embers refill
+      +3 each turn. <b>End Turn</b> (E / Space) lets the Regent answer the intent it
+      announced — shield up before a big hit lands. Win by dropping the Regent to 0 life.
+      <button id="howto-btn" type="button">More…</button></p>
+    <p class="howto" id="howto-text" style="display:none">Burn and Thorn stacks hurt at the
+      start of the afflicted side's turn, then fade by 1. Snare weakens the foe's next attack
+      by 3. Shield soaks damage first and lasts until it is spent. Your deck reshuffles
+      when it runs out — play the long game, or go for the throat.</p>
+  </section>
+
+  <!-- Table screen -->
+  <section id="table-screen" class="screen">
+    <div class="fighter-row">
+      <div class="fighter">
+        <div class="name"><span class="crown-sm">♛</span> THE ASHEN REGENT</div>
+        <div class="hpbar"><div class="fill" id="rival-hp-fill"></div><div class="num" id="rival-hp-num"></div></div>
+        <div class="shield-line" id="rival-shield"></div>
+        <div class="rival-hand" id="rival-hand"></div>
+      </div>
+      <div class="intent-wrap">
+        <div class="intent-label">THE REGENT'S INTENT</div>
+        <div class="intent-badge" id="intent-badge">The Regent is thinking…</div>
+      </div>
+      <div class="embers-wrap">
+        <div class="embers-label">YOUR EMBERS</div>
+        <div class="pips" id="ember-pips"></div>
+        <div class="court-line" id="court-line"></div>
+      </div>
+    </div>
+    <div class="mid-row">
+      <div class="log" id="log"></div>
+      <div class="banner" id="turn-banner"></div>
+    </div>
+    <div class="player-row">
+      <div class="fighter" style="width:330px">
+        <div class="name">⚔ YOU — THE CHALLENGER</div>
+        <div class="hpbar"><div class="fill you" id="player-hp-fill"></div><div class="num" id="player-hp-num"></div></div>
+        <div class="shield-line" id="player-shield"></div>
+      </div>
+      <div class="hand" id="hand"></div>
+      <div class="endturn-col">
+        <button id="end-turn" class="end-btn">END TURN ⏎</button>
+        <div class="hint">Click a card to play it.<br><b>1–7</b> play · <b>E</b> end turn · <b>R</b> restart</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- End screen -->
+  <section id="end-screen" class="screen">
+    <div id="confetti"></div>
+    <h1 id="end-title">👑 VICTORY!</h1>
+    <p class="end-sub" id="end-sub"></p>
+    <div class="end-stats">
+      <div class="stat-box"><div class="num" id="stat-turns">0</div><div class="lbl">TURNS</div></div>
+      <div class="stat-box"><div class="num" id="stat-cards">0</div><div class="lbl">CARDS PLAYED</div></div>
+      <div class="stat-box"><div class="num" id="stat-damage">0</div><div class="lbl">DAMAGE DEALT</div></div>
+      <div class="stat-box"><div class="num" id="stat-taken">0</div><div class="lbl">DAMAGE TAKEN</div></div>
+    </div>
+    <button id="again-btn" class="big-btn">↻ PLAY AGAIN</button>
+  </section>
+
+  <div id="floaters"></div>
+  <div id="selftest"></div>
+</div>
+<script type="module" src="./src/main.mjs"></script>
+</body>
+</html>
